@@ -12,16 +12,16 @@ namespace MarkInputHelper
 {
 	public partial class frmMain : Form
 	{
-		private bool stopFlag = false;
-		[Flags]
-		private enum MouseEventFlag : uint
-		{
-			LeftDown = 0x0002,
-			LeftUp = 0x0004,
-		}
+		//private bool stopFlag = false;
+		//[Flags]
+		//private enum MouseEventFlag : uint
+		//{
+		//	LeftDown = 0x0002,
+		//	LeftUp = 0x0004,
+		//}
 
-		[DllImport("user32.dll")]
-		private static extern void mouse_event(MouseEventFlag flags, int dx, int dy, uint data, UIntPtr extraInfo);
+		//[DllImport("user32.dll")]
+		//private static extern void mouse_event(MouseEventFlag flags, int dx, int dy, uint data, UIntPtr extraInfo);
 
 
 		public frmMain()
@@ -124,16 +124,16 @@ namespace MarkInputHelper
 		{
 			int interval = 50;
 
-			MessageBox.Show("请在点击“确定”按钮之后10秒内点击成绩输入页面上平时成绩列的第一个输入框", "注意", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+			MessageBox.Show("请在点击“确定”按钮之后10秒内双击成绩输入页面上平时成绩列的第一个输入框，保证此栏数据高亮，并耐心等待输入开始", "注意", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			Thread.Sleep(10000);
 
-			#region 模拟双击鼠标，全选
-			mouse_event(MouseEventFlag.LeftDown, 0, 0, 0, UIntPtr.Zero);
-			mouse_event(MouseEventFlag.LeftUp, 0, 0, 0, UIntPtr.Zero);
+			//#region 模拟双击鼠标，全选
+			//mouse_event(MouseEventFlag.LeftDown, 0, 0, 0, UIntPtr.Zero);
+			//mouse_event(MouseEventFlag.LeftUp, 0, 0, 0, UIntPtr.Zero);
 
-			mouse_event(MouseEventFlag.LeftDown, 0, 0, 0, UIntPtr.Zero);
-			mouse_event(MouseEventFlag.LeftUp, 0, 0, 0, UIntPtr.Zero);
-			#endregion
+			//mouse_event(MouseEventFlag.LeftDown, 0, 0, 0, UIntPtr.Zero);
+			//mouse_event(MouseEventFlag.LeftUp, 0, 0, 0, UIntPtr.Zero);
+			//#endregion
 
 			Thread.Sleep(interval);
 			for (int i = 0; i < gdvMain.RowCount-1; i++)
