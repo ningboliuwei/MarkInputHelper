@@ -49,13 +49,14 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
+			this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label1.Location = new System.Drawing.Point(3, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(705, 102);
+			this.label1.Size = new System.Drawing.Size(835, 110);
 			this.label1.TabIndex = 3;
 			this.label1.Text = "说明：\r\n第一步：打开成绩输入页面\r\n第二步：选择成绩输入模式\r\n第三步：在EXCEL中选中并复制需要输入的数据（只是成绩，不包含表头），并按Ctrl+V或点击“" +
-    "粘贴”按钮，将输入粘贴到表格中\r\n第四步：点击“输入”按钮，并按提示进行操作\r\n注意：1. 暂不支持带实验成绩的模式 2. 若要输入新的成绩，先点击“清空”按钮" +
-    "，再进行粘贴";
+    "粘贴”按钮，将数据粘贴到表格中\r\n第四步：点击“输入”按钮，并按提示进行操作\r\n注意：1. 暂不支持带实验成绩的模式 2. 若要输入新的成绩，先点击“清空”按钮" +
+    "，再进行粘贴 3. 重新输入成绩不需要清空页面上的输入框";
 			// 
 			// tableLayoutPanel1
 			// 
