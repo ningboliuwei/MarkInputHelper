@@ -12,16 +12,16 @@ namespace MarkInputHelper
 {
 	public partial class frmMain : Form
 	{
-		//private bool stopFlag = false;
-		//[Flags]
-		//private enum MouseEventFlag : uint
-		//{
-		//	LeftDown = 0x0002,
-		//	LeftUp = 0x0004,
-		//}
+		private bool stopFlag = false;
+		[Flags]
+		private enum MouseEventFlag : uint
+		{
+			LeftDown = 0x0002,
+			LeftUp = 0x0004,
+		}
 
-		//[DllImport("user32.dll")]
-		//private static extern void mouse_event(MouseEventFlag flags, int dx, int dy, uint data, UIntPtr extraInfo);
+		[DllImport("user32.dll")]
+		private static extern void mouse_event(MouseEventFlag flags, int dx, int dy, uint data, UIntPtr extraInfo);
 
 
 		public frmMain()
@@ -122,18 +122,20 @@ namespace MarkInputHelper
 
 		private void InputMarks()
 		{
-			int interval = 50;
+			int interval = 100;
 
-			MessageBox.Show("请在点击“确定”按钮之后10秒内双击成绩输入页面上平时成绩列的第一个输入框，保证此栏数据高亮，并耐心等待输入开始", "注意", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+			MessageBox.Show("请在点击“确定”按钮之后10秒内点击成绩输入页面上平时成绩列的第一个输入框，保证此栏获取输入焦点（光标闪），并耐心等待输入开始", "注意", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			Thread.Sleep(10000);
 
-			//#region 模拟双击鼠标，全选
-			//mouse_event(MouseEventFlag.LeftDown, 0, 0, 0, UIntPtr.Zero);
-			//mouse_event(MouseEventFlag.LeftUp, 0, 0, 0, UIntPtr.Zero);
+			#region 模拟双击鼠标，全选
+			mouse_event(MouseEventFlag.LeftDown, 0, 0, 0, UIntPtr.Zero);
+			mouse_event(MouseEventFlag.LeftUp, 0, 0, 0, UIntPtr.Zero);
 
-			//mouse_event(MouseEventFlag.LeftDown, 0, 0, 0, UIntPtr.Zero);
-			//mouse_event(MouseEventFlag.LeftUp, 0, 0, 0, UIntPtr.Zero);
-			//#endregion
+			Thread.Sleep(120);
+
+			mouse_event(MouseEventFlag.LeftDown, 0, 0, 0, UIntPtr.Zero);
+			mouse_event(MouseEventFlag.LeftUp, 0, 0, 0, UIntPtr.Zero);
+			#endregion
 
 			Thread.Sleep(interval);
 			for (int i = 0; i < gdvMain.RowCount-1; i++)
@@ -142,18 +144,18 @@ namespace MarkInputHelper
 				{
 					if (radioButton2.Checked)//只输入期末成绩
 					{
-						SendKeys.Send("{TAB}");
+						SendKeys.SendWait("{TAB}");
 					}
 
-					SendKeys.Send("{DELETE}");
+					SendKeys.SendWait("{DELETE}");
 					Thread.Sleep(interval);
-					SendKeys.Send(gdvMain.Rows[i].Cells[j].Value.ToString().Trim());
+					SendKeys.SendWait(gdvMain.Rows[i].Cells[j].Value.ToString().Trim());
 					Thread.Sleep(interval);
-					SendKeys.Send("{TAB}");
+					SendKeys.SendWait("{TAB}");
 
 					if (radioButton1.Checked)//只输入平时成绩
 					{
-						SendKeys.Send("{TAB}");
+						SendKeys.SendWait("{TAB}");
 					}
 
 
