@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
 			this.label1 = new System.Windows.Forms.Label();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -36,14 +37,24 @@
 			this.btnClear = new System.Windows.Forms.Button();
 			this.btnInput = new System.Windows.Forms.Button();
 			this.btnPaste = new System.Windows.Forms.Button();
-			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-			this.radioButton3 = new System.Windows.Forms.RadioButton();
-			this.radioButton2 = new System.Windows.Forms.RadioButton();
-			this.radioButton1 = new System.Windows.Forms.RadioButton();
+			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+			this.rdoNoExp = new System.Windows.Forms.RadioButton();
+			this.rdoExp = new System.Windows.Forms.RadioButton();
+			this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+			this.chkExp = new System.Windows.Forms.CheckBox();
+			this.chkUsual = new System.Windows.Forms.CheckBox();
+			this.chkEnd = new System.Windows.Forms.CheckBox();
+			this.nudSpeed = new System.Windows.Forms.NumericUpDown();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gdvMain)).BeginInit();
 			this.tableLayoutPanel2.SuspendLayout();
-			this.tableLayoutPanel3.SuspendLayout();
+			this.flowLayoutPanel1.SuspendLayout();
+			this.flowLayoutPanel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nudSpeed)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -52,28 +63,29 @@
 			this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label1.Location = new System.Drawing.Point(3, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(835, 110);
+			this.label1.Size = new System.Drawing.Size(835, 180);
 			this.label1.TabIndex = 3;
-			this.label1.Text = "说明：\r\n第一步：打开成绩输入页面\r\n第二步：选择成绩输入模式\r\n第三步：在EXCEL中选中并复制需要输入的数据（只是成绩，不包含表头），并按Ctrl+V或点击“" +
-    "粘贴”按钮，将数据粘贴到表格中\r\n第四步：点击“输入”按钮，并按提示进行操作\r\n注意：1. 暂不支持带实验成绩的模式 2. 若要输入新的成绩，先点击“清空”按钮" +
-    "，再进行粘贴 3. 重新输入成绩不需要清空页面上的输入框";
+			this.label1.Text = resources.GetString("label1.Text");
 			// 
 			// tableLayoutPanel1
 			// 
 			this.tableLayoutPanel1.ColumnCount = 1;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel1.Controls.Add(this.gdvMain, 0, 2);
-			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
+			this.tableLayoutPanel1.Controls.Add(this.gdvMain, 0, 3);
+			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 3);
 			this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 1);
+			this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
+			this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 0, 2);
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 3;
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+			this.tableLayoutPanel1.RowCount = 4;
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(841, 501);
 			this.tableLayoutPanel1.TabIndex = 0;
 			// 
@@ -81,10 +93,11 @@
 			// 
 			this.gdvMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.gdvMain.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gdvMain.Location = new System.Drawing.Point(3, 148);
+			this.gdvMain.Location = new System.Drawing.Point(3, 253);
 			this.gdvMain.Name = "gdvMain";
+			this.gdvMain.ReadOnly = true;
 			this.gdvMain.RowTemplate.Height = 24;
-			this.gdvMain.Size = new System.Drawing.Size(835, 300);
+			this.gdvMain.Size = new System.Drawing.Size(835, 195);
 			this.gdvMain.TabIndex = 6;
 			// 
 			// tableLayoutPanel2
@@ -137,58 +150,146 @@
 			this.btnPaste.UseVisualStyleBackColor = true;
 			this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
 			// 
-			// tableLayoutPanel3
+			// flowLayoutPanel1
 			// 
-			this.tableLayoutPanel3.ColumnCount = 3;
-			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-			this.tableLayoutPanel3.Controls.Add(this.radioButton3, 2, 0);
-			this.tableLayoutPanel3.Controls.Add(this.radioButton2, 1, 0);
-			this.tableLayoutPanel3.Controls.Add(this.radioButton1, 0, 0);
-			this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 113);
-			this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-			this.tableLayoutPanel3.RowCount = 1;
-			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel3.Size = new System.Drawing.Size(835, 29);
-			this.tableLayoutPanel3.TabIndex = 7;
+			this.flowLayoutPanel1.Controls.Add(this.label2);
+			this.flowLayoutPanel1.Controls.Add(this.rdoNoExp);
+			this.flowLayoutPanel1.Controls.Add(this.rdoExp);
+			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 183);
+			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(835, 29);
+			this.flowLayoutPanel1.TabIndex = 8;
 			// 
-			// radioButton3
+			// rdoNoExp
 			// 
-			this.radioButton3.AutoSize = true;
-			this.radioButton3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.radioButton3.Location = new System.Drawing.Point(559, 3);
-			this.radioButton3.Name = "radioButton3";
-			this.radioButton3.Size = new System.Drawing.Size(273, 23);
-			this.radioButton3.TabIndex = 2;
-			this.radioButton3.TabStop = true;
-			this.radioButton3.Text = "同时输入平时与期末成绩";
-			this.radioButton3.UseVisualStyleBackColor = true;
+			this.rdoNoExp.AutoSize = true;
+			this.rdoNoExp.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.rdoNoExp.Location = new System.Drawing.Point(125, 3);
+			this.rdoNoExp.Name = "rdoNoExp";
+			this.rdoNoExp.Size = new System.Drawing.Size(98, 21);
+			this.rdoNoExp.TabIndex = 0;
+			this.rdoNoExp.TabStop = true;
+			this.rdoNoExp.Text = "不含实验成绩";
+			this.rdoNoExp.UseVisualStyleBackColor = true;
+			this.rdoNoExp.CheckedChanged += new System.EventHandler(this.rdoNoExp_CheckedChanged);
 			// 
-			// radioButton2
+			// rdoExp
 			// 
-			this.radioButton2.AutoSize = true;
-			this.radioButton2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.radioButton2.Location = new System.Drawing.Point(281, 3);
-			this.radioButton2.Name = "radioButton2";
-			this.radioButton2.Size = new System.Drawing.Size(272, 23);
-			this.radioButton2.TabIndex = 1;
-			this.radioButton2.TabStop = true;
-			this.radioButton2.Text = "只输入期末成绩";
-			this.radioButton2.UseVisualStyleBackColor = true;
+			this.rdoExp.AutoSize = true;
+			this.rdoExp.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.rdoExp.Location = new System.Drawing.Point(229, 3);
+			this.rdoExp.Name = "rdoExp";
+			this.rdoExp.Size = new System.Drawing.Size(86, 21);
+			this.rdoExp.TabIndex = 1;
+			this.rdoExp.TabStop = true;
+			this.rdoExp.Text = "含实验成绩";
+			this.rdoExp.UseVisualStyleBackColor = true;
+			this.rdoExp.CheckedChanged += new System.EventHandler(this.rdoExp_CheckedChanged);
 			// 
-			// radioButton1
+			// flowLayoutPanel2
 			// 
-			this.radioButton1.AutoSize = true;
-			this.radioButton1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.radioButton1.Location = new System.Drawing.Point(3, 3);
-			this.radioButton1.Name = "radioButton1";
-			this.radioButton1.Size = new System.Drawing.Size(272, 23);
-			this.radioButton1.TabIndex = 0;
-			this.radioButton1.TabStop = true;
-			this.radioButton1.Text = "只输入平时成绩";
-			this.radioButton1.UseVisualStyleBackColor = true;
+			this.flowLayoutPanel2.Controls.Add(this.label3);
+			this.flowLayoutPanel2.Controls.Add(this.chkExp);
+			this.flowLayoutPanel2.Controls.Add(this.chkUsual);
+			this.flowLayoutPanel2.Controls.Add(this.chkEnd);
+			this.flowLayoutPanel2.Controls.Add(this.label4);
+			this.flowLayoutPanel2.Controls.Add(this.nudSpeed);
+			this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 218);
+			this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+			this.flowLayoutPanel2.Size = new System.Drawing.Size(835, 29);
+			this.flowLayoutPanel2.TabIndex = 9;
+			// 
+			// chkExp
+			// 
+			this.chkExp.AutoSize = true;
+			this.chkExp.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.chkExp.Location = new System.Drawing.Point(173, 3);
+			this.chkExp.Name = "chkExp";
+			this.chkExp.Size = new System.Drawing.Size(75, 21);
+			this.chkExp.TabIndex = 1;
+			this.chkExp.Text = "实验成绩";
+			this.chkExp.UseVisualStyleBackColor = true;
+			// 
+			// chkUsual
+			// 
+			this.chkUsual.AutoSize = true;
+			this.chkUsual.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.chkUsual.Location = new System.Drawing.Point(254, 3);
+			this.chkUsual.Name = "chkUsual";
+			this.chkUsual.Size = new System.Drawing.Size(75, 21);
+			this.chkUsual.TabIndex = 2;
+			this.chkUsual.Text = "平时成绩";
+			this.chkUsual.UseVisualStyleBackColor = true;
+			// 
+			// chkEnd
+			// 
+			this.chkEnd.AutoSize = true;
+			this.chkEnd.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.chkEnd.Location = new System.Drawing.Point(335, 3);
+			this.chkEnd.Name = "chkEnd";
+			this.chkEnd.Size = new System.Drawing.Size(75, 21);
+			this.chkEnd.TabIndex = 3;
+			this.chkEnd.Text = "期末成绩";
+			this.chkEnd.UseVisualStyleBackColor = true;
+			// 
+			// nudSpeed
+			// 
+			this.nudSpeed.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.nudSpeed.Location = new System.Drawing.Point(610, 3);
+			this.nudSpeed.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+			this.nudSpeed.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+			this.nudSpeed.Name = "nudSpeed";
+			this.nudSpeed.Size = new System.Drawing.Size(120, 23);
+			this.nudSpeed.TabIndex = 4;
+			this.toolTip1.SetToolTip(this.nudSpeed, "若因机器较慢导致输入问题，可尝试调大数值。最小值（默认值）20，最大值1000");
+			this.nudSpeed.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label2.Location = new System.Drawing.Point(3, 0);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(116, 27);
+			this.label2.TabIndex = 2;
+			this.label2.Text = "是否包含实验成绩：";
+			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label3.Location = new System.Drawing.Point(3, 0);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(164, 27);
+			this.label3.TabIndex = 5;
+			this.label3.Text = "要输入的成绩项（可多选）：";
+			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label4.Location = new System.Drawing.Point(416, 0);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(188, 27);
+			this.label4.TabIndex = 6;
+			this.label4.Text = "输入速度（数值越小，速度越快）";
+			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// frmMain
 			// 
@@ -200,15 +301,18 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;
 			this.Name = "frmMain";
-			this.Text = "成绩输入器";
+			this.Text = "成绩输入器（V1.1 by @liuwei）";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gdvMain)).EndInit();
 			this.tableLayoutPanel2.ResumeLayout(false);
-			this.tableLayoutPanel3.ResumeLayout(false);
-			this.tableLayoutPanel3.PerformLayout();
+			this.flowLayoutPanel1.ResumeLayout(false);
+			this.flowLayoutPanel1.PerformLayout();
+			this.flowLayoutPanel2.ResumeLayout(false);
+			this.flowLayoutPanel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nudSpeed)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -222,10 +326,18 @@
 		private System.Windows.Forms.Button btnClear;
 		private System.Windows.Forms.Button btnInput;
 		private System.Windows.Forms.Button btnPaste;
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-		private System.Windows.Forms.RadioButton radioButton3;
-		private System.Windows.Forms.RadioButton radioButton2;
-		private System.Windows.Forms.RadioButton radioButton1;
+		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+		private System.Windows.Forms.RadioButton rdoNoExp;
+		private System.Windows.Forms.RadioButton rdoExp;
+		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+		private System.Windows.Forms.CheckBox chkExp;
+		private System.Windows.Forms.CheckBox chkUsual;
+		private System.Windows.Forms.CheckBox chkEnd;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.NumericUpDown nudSpeed;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.ToolTip toolTip1;
 
 	}
 }

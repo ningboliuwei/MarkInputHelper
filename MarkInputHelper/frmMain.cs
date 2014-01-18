@@ -1,29 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using WindowsInput;
 
 namespace MarkInputHelper
 {
 	public partial class frmMain : Form
 	{
-		private bool stopFlag = false;
-		[Flags]
-		private enum MouseEventFlag : uint
-		{
-			LeftDown = 0x0002,
-			LeftUp = 0x0004,
-		}
-
-		[DllImport("user32.dll")]
-		private static extern void mouse_event(MouseEventFlag flags, int dx, int dy, uint data, UIntPtr extraInfo);
-
-
 		public frmMain()
 		{
 			InitializeComponent();
@@ -70,7 +53,6 @@ namespace MarkInputHelper
 
 				gdvMain.AutoResizeColumns();
 				gdvMain.AutoResizeRows();
-
 			}
 			catch (Exception ex)
 			{
@@ -108,66 +90,168 @@ namespace MarkInputHelper
 
 		private void btnInput_Click(object sender, EventArgs e)
 		{
-			if (radioButton1.Checked == false && radioButton2.Checked == false && radioButton3.Checked == false)
+			int checkCount = 0;
+
+			if (rdoNoExp.Checked == false && rdoExp.Checked == false)
 			{
-				MessageBox.Show("请选择成绩输入模式", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("请选择是否包含实验成绩", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			if (chkExp.Checked == false && chkUsual.Checked == false && chkEnd.Checked == false)
+			{
+				MessageBox.Show("请选择要输入的成绩列", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			#region 得到选中的复选框数量
+
+			if (chkExp.Checked)
+			{
+				checkCount++;
+			}
+
+			if (chkUsual.Checked)
+			{
+				checkCount++;
+			}
+
+			if (chkEnd.Checked)
+			{
+				checkCount++;
+			}
+
+			#endregion
+
+			if (checkCount != gdvMain.ColumnCount)
+			{
+				MessageBox.Show("选择的成绩列与粘贴的数据列数不一致，请重新选择成绩列或粘贴数据", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
 			if (MessageBox.Show("确定输入成绩吗？", "问题", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
 			{
-				InputMarks();
+				InputMarks(checkCount);
 			}
 		}
 
-		private void InputMarks()
+		private void InputMarks(int columnCount)
 		{
 			int interval = 100;
 
-			MessageBox.Show("请在点击“确定”按钮之后10秒内点击成绩输入页面上平时成绩列的第一个输入框，保证此栏获取输入焦点（光标闪），并耐心等待输入开始", "注意", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+			MessageBox.Show("请在点击“确定”按钮之后10秒内点击成绩输入页面上最左列的最上一个输入框，保证此栏获取输入焦点（光标闪），之后不要移动鼠标，并耐心等待输入开始", "注意", MessageBoxButtons.OK,
+				MessageBoxIcon.Exclamation);
 			Thread.Sleep(10000);
 
-			#region 模拟双击鼠标，全选
-			mouse_event(MouseEventFlag.LeftDown, 0, 0, 0, UIntPtr.Zero);
-			mouse_event(MouseEventFlag.LeftUp, 0, 0, 0, UIntPtr.Zero);
-
-			Thread.Sleep(120);
-
-			mouse_event(MouseEventFlag.LeftDown, 0, 0, 0, UIntPtr.Zero);
-			mouse_event(MouseEventFlag.LeftUp, 0, 0, 0, UIntPtr.Zero);
-			#endregion
-
-			Thread.Sleep(interval);
-			for (int i = 0; i < gdvMain.RowCount-1; i++)
+			for (int i = 0; i < gdvMain.RowCount - 1; i++)
 			{
-				for (int j = 0; j < gdvMain.ColumnCount; j++)
+				if (columnCount == 1) //只有一列成绩
 				{
-					if (radioButton2.Checked)//只输入期末成绩
+					if (chkExp.Checked) //只输入实验成绩
 					{
-						SendKeys.SendWait("{TAB}");
+						InputData(gdvMain.Rows[i].Cells[0].Value.ToString().Trim()); //输入成绩
+						GoToNextInput(); //→平时成绩
+						GoToNextInput(); //→期末成绩
+						GoToNextInput(); //→换行
 					}
-
-					SendKeys.SendWait("{DELETE}");
-					Thread.Sleep(interval);
-					SendKeys.SendWait(gdvMain.Rows[i].Cells[j].Value.ToString().Trim());
-					Thread.Sleep(interval);
-					SendKeys.SendWait("{TAB}");
-
-					if (radioButton1.Checked)//只输入平时成绩
+					else if (chkUsual.Checked) //只输入平时成绩
 					{
-						SendKeys.SendWait("{TAB}");
+						if (rdoExp.Checked) //若带实验的平时成绩
+						{
+							GoToNextInput(); //→平时成绩
+						}
+
+						InputData(gdvMain.Rows[i].Cells[0].Value.ToString().Trim()); //输入成绩
+
+						GoToNextInput(); //→期末成绩
+						GoToNextInput(); //→换行
 					}
+					else if (chkEnd.Checked) //只输入期末成绩
+					{
+						if (rdoExp.Checked) //若带实验的期末成绩
+						{
+							GoToNextInput(); //→平时成绩
+						}
 
+						GoToNextInput(); //→期末成绩
 
-					Thread.Sleep(interval);
+						InputData(gdvMain.Rows[i].Cells[0].Value.ToString().Trim()); //输入成绩
+
+						GoToNextInput(); //换行
+					}
+				}
+				else if (columnCount == 2) //有两列数据
+				{
+					if (chkExp.Checked && chkUsual.Checked) //实验成绩与平时成绩
+					{
+						InputData(gdvMain.Rows[i].Cells[0].Value.ToString().Trim()); //输入实验成绩
+
+						GoToNextInput(); //→平时成绩
+						InputData(gdvMain.Rows[i].Cells[1].Value.ToString().Trim()); //输入平时成绩
+						GoToNextInput(); //→期末成绩
+						GoToNextInput(); //→换行
+					}
+					else if (chkExp.Checked && chkEnd.Checked) //实验成绩与期末成绩
+					{
+						InputData(gdvMain.Rows[i].Cells[0].Value.ToString().Trim()); //输入实验成绩
+						GoToNextInput(); //→平时成绩
+						GoToNextInput(); //→期末成绩
+						InputData(gdvMain.Rows[i].Cells[1].Value.ToString().Trim()); //输入期末成绩
+						GoToNextInput(); //→换行
+					}
+					else if (chkUsual.Checked && chkEnd.Checked) //平时成绩与期末成绩
+					{
+						if (rdoExp.Checked) //若带实验的期末成绩
+						{
+							GoToNextInput(); //→平时成绩
+						}
+						InputData(gdvMain.Rows[i].Cells[0].Value.ToString().Trim()); //输入平时成绩
+						GoToNextInput(); //→期末成绩
+						InputData(gdvMain.Rows[i].Cells[1].Value.ToString().Trim()); //输入期末成绩
+						GoToNextInput(); //→换行
+					}
+				}
+				else if (columnCount == 3) //实验成绩、平时成绩与期末成绩
+				{
+					InputData(gdvMain.Rows[i].Cells[0].Value.ToString().Trim()); //输入实验成绩
+					GoToNextInput(); //→平时成绩
+					InputData(gdvMain.Rows[i].Cells[1].Value.ToString().Trim()); //输入平时成绩
+					GoToNextInput(); //→期末成绩
+					InputData(gdvMain.Rows[i].Cells[2].Value.ToString().Trim()); //输入期末成绩
+					GoToNextInput(); //→换行
 				}
 			}
 		}
 
-		
+		public void InputData(string data)
+		{
+			InputSimulator.SimulateModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_A); //全选当前输入框
+			InputSimulator.SimulateKeyPress(VirtualKeyCode.DELETE);
+			InputSimulator.SimulateTextEntry(data);
+			Thread.Sleep(Convert.ToInt32(nudSpeed.Value));
+		}
 
-		
-		
+		public void GoToNextInput()
+		{
+			InputSimulator.SimulateKeyPress(VirtualKeyCode.TAB);
+			Thread.Sleep(Convert.ToInt32(nudSpeed.Value));
+		}
+
+		private void rdoNoExp_CheckedChanged(object sender, EventArgs e)
+		{
+			if (rdoNoExp.Checked)
+			{
+				chkExp.Enabled = false;
+				chkExp.Checked = false;
+			}
+		}
+
+		private void rdoExp_CheckedChanged(object sender, EventArgs e)
+		{
+			if (rdoExp.Checked)
+			{
+				chkExp.Enabled = true;
+			}
+		}
 	}
 }
-
