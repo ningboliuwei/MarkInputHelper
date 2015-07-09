@@ -5,12 +5,8 @@ using WindowsInput;
 
 namespace MarkInputHelper
 {
-	using WindowsInput.Native;
-
 	public partial class frmMain : Form
 	{
-		InputSimulator _inputSimulator = new InputSimulator();
-
 		public frmMain()
 		{
 			InitializeComponent();
@@ -167,12 +163,22 @@ namespace MarkInputHelper
 
 						InputData(gdvMain.Rows[i].Cells[0].Value.ToString().Trim()); //输入成绩
 
+<<<<<<< Updated upstream
 						GoToNextInput(); //→期末成绩
 						GoToNextInput(); //→换行
-					}
-					else if (chkEnd.Checked) //只输入期末成绩
+=======
+					//为娄老师添加
+					Thread.Sleep(interval);
+					SendKeys.SendWait("{TAB}");
+					Thread.Sleep(interval);
 					SendKeys.SendWait("{TAB}");
 
+					if (radioButton1.Checked)//只输入平时成绩
+					{
+						SendKeys.SendWait("{TAB}");
+>>>>>>> Stashed changes
+					}
+					else if (chkEnd.Checked) //只输入期末成绩
 					{
 						if (rdoExp.Checked) //若带实验的期末成绩
 						{
@@ -231,19 +237,16 @@ namespace MarkInputHelper
 
 		public void InputData(string data)
 		{
-			
-
-			_inputSimulator.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_A); //全选当前输入框
-			_inputSimulator.Keyboard.KeyPress(VirtualKeyCode.DELETE);
-			_inputSimulator.Keyboard.TextEntry(data);
+			InputSimulator.SimulateModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_A); //全选当前输入框
+			InputSimulator.SimulateKeyPress(VirtualKeyCode.DELETE);
+			InputSimulator.SimulateTextEntry(data);
 			Thread.Sleep(Convert.ToInt32(nudSpeed.Value));
 		}
 
 		public void GoToNextInput()
 		{
-			_inputSimulator.Keyboard.KeyPress(VirtualKeyCode.TAB);
-			//Thread.Sleep(Convert.ToInt32(nudSpeed.Value));
-			_inputSimulator.Keyboard.Sleep(Convert.ToInt32(nudSpeed.Value));
+			InputSimulator.SimulateKeyPress(VirtualKeyCode.TAB);
+			Thread.Sleep(Convert.ToInt32(nudSpeed.Value));
 		}
 
 		private void rdoNoExp_CheckedChanged(object sender, EventArgs e)

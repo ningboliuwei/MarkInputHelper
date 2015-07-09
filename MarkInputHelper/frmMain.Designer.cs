@@ -38,16 +38,16 @@
 			this.btnInput = new System.Windows.Forms.Button();
 			this.btnPaste = new System.Windows.Forms.Button();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+			this.label2 = new System.Windows.Forms.Label();
 			this.rdoNoExp = new System.Windows.Forms.RadioButton();
 			this.rdoExp = new System.Windows.Forms.RadioButton();
 			this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+			this.label3 = new System.Windows.Forms.Label();
 			this.chkExp = new System.Windows.Forms.CheckBox();
 			this.chkUsual = new System.Windows.Forms.CheckBox();
 			this.chkEnd = new System.Windows.Forms.CheckBox();
-			this.nudSpeed = new System.Windows.Forms.NumericUpDown();
-			this.label2 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
+			this.nudSpeed = new System.Windows.Forms.NumericUpDown();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gdvMain)).BeginInit();
@@ -161,6 +161,17 @@
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(835, 29);
 			this.flowLayoutPanel1.TabIndex = 8;
 			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label2.Location = new System.Drawing.Point(3, 0);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(116, 27);
+			this.label2.TabIndex = 2;
+			this.label2.Text = "是否包含实验成绩：";
+			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
 			// rdoNoExp
 			// 
 			this.rdoNoExp.AutoSize = true;
@@ -201,6 +212,17 @@
 			this.flowLayoutPanel2.Size = new System.Drawing.Size(835, 29);
 			this.flowLayoutPanel2.TabIndex = 9;
 			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label3.Location = new System.Drawing.Point(3, 0);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(164, 27);
+			this.label3.TabIndex = 5;
+			this.label3.Text = "要输入的成绩项（可多选）：";
+			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
 			// chkExp
 			// 
 			this.chkExp.AutoSize = true;
@@ -234,6 +256,17 @@
 			this.chkEnd.Text = "期末成绩";
 			this.chkEnd.UseVisualStyleBackColor = true;
 			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label4.Location = new System.Drawing.Point(416, 0);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(188, 27);
+			this.label4.TabIndex = 6;
+			this.label4.Text = "输入速度（数值越小，速度越快）";
+			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
 			// nudSpeed
 			// 
 			this.nudSpeed.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -253,43 +286,10 @@
 			this.nudSpeed.TabIndex = 4;
 			this.toolTip1.SetToolTip(this.nudSpeed, "若因机器较慢导致输入问题，可尝试调大数值。最小值（默认值）20，最大值1000");
 			this.nudSpeed.Value = new decimal(new int[] {
-            20,
+            100,
             0,
             0,
             0});
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label2.Location = new System.Drawing.Point(3, 0);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(116, 27);
-			this.label2.TabIndex = 2;
-			this.label2.Text = "是否包含实验成绩：";
-			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label3.Location = new System.Drawing.Point(3, 0);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(164, 27);
-			this.label3.TabIndex = 5;
-			this.label3.Text = "要输入的成绩项（可多选）：";
-			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label4.Location = new System.Drawing.Point(416, 0);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(188, 27);
-			this.label4.TabIndex = 6;
-			this.label4.Text = "输入速度（数值越小，速度越快）";
-			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// frmMain
 			// 
@@ -301,7 +301,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;
 			this.Name = "frmMain";
-			this.Text = "成绩输入器（V1.1 by @liuwei）";
+			this.Text = "成绩输入器（V1.2 by bullfrog2000@sina.com）";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
 			this.tableLayoutPanel1.ResumeLayout(false);
