@@ -167,6 +167,8 @@ namespace MarkInputHelper
 						GoToNextInput(); //→换行
 					}
 					else if (chkEnd.Checked) //只输入期末成绩
+					SendKeys.SendWait("{TAB}");
+
 					{
 						if (rdoExp.Checked) //若带实验的期末成绩
 						{
