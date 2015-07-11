@@ -9,11 +9,30 @@ namespace MarkInputHelper
 
 	public partial class frmMain : Form
 	{
-		InputSimulator _inputSimulator = new InputSimulator();
+		private InputSimulator _inputSimulator = new InputSimulator();
+		private int selectedColumnCount;
+
+		private enum InputType
+		{
+			RowFirst,
+			ColumnFirst
+		}
+
 
 		public frmMain()
 		{
 			InitializeComponent();
+		}
+
+		private void GenerateColumnCheckBoxes(int baseNumber, int count)
+		{
+			for (int i = 0; i < count; i++)
+			{
+				CheckBox checkBox = new CheckBox();
+				checkBox.AutoSize = true;
+				checkBox.Text = (baseNumber + i).ToString();
+				flowLayoutPanelColumns.Controls.Add(checkBox);
+			}
 		}
 
 		public void DataGirdViewCellPaste()
@@ -64,8 +83,9 @@ namespace MarkInputHelper
 			}
 		}
 
-		private void Form1_Load(object sender, EventArgs e)
+		private void frmMain_Load(object sender, EventArgs e)
 		{
+			GenerateColumnCheckBoxes(1, Convert.ToInt32(nudColumnCount.Value));
 		}
 
 		private void frmMain_KeyDown(object sender, KeyEventArgs e)
@@ -94,172 +114,132 @@ namespace MarkInputHelper
 
 		private void btnInput_Click(object sender, EventArgs e)
 		{
-			int checkCount = 0;
 
-			if (rdoNoExp.Checked == false && rdoExp.Checked == false)
+			selectedColumnCount = 0;
+			for (int i = 1; i < flowLayoutPanelColumns.Controls.Count; i++)
 			{
-				MessageBox.Show("请选择是否包含实验成绩", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				if (((CheckBox)flowLayoutPanelColumns.Controls[i]).Checked)
+				{
+					selectedColumnCount++;
+				}
+			}
+
+			if (gdvMain.ColumnCount == 0)
+			{
+				MessageBox.Show("没有粘贴任何数据。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
-			if (chkExp.Checked == false && chkUsual.Checked == false && chkEnd.Checked == false)
+			if (selectedColumnCount == 0)
 			{
-				MessageBox.Show("请选择要输入的成绩列", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("至少要选择一列用于输入数据。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
-			#region 得到选中的复选框数量
-
-			if (chkExp.Checked)
+			if (gdvMain.ColumnCount != selectedColumnCount)
 			{
-				checkCount++;
-			}
-
-			if (chkUsual.Checked)
-			{
-				checkCount++;
-			}
-
-			if (chkEnd.Checked)
-			{
-				checkCount++;
-			}
-
-			#endregion
-
-			if (checkCount != gdvMain.ColumnCount)
-			{
-				MessageBox.Show("选择的成绩列与粘贴的数据列数不一致，请重新选择成绩列或粘贴数据", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("选择的列数与数据列数不一致。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
 			if (MessageBox.Show("确定输入成绩吗？", "问题", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
 			{
-				InputMarks(checkCount);
+				if (rdoRowFirst.Checked)
+				{
+					InputMarks(InputType.RowFirst);
+				}
+				else
+				{
+					InputMarks(InputType.ColumnFirst);
+				}
 			}
 		}
 
-		private void InputMarks(int columnCount)
+		private void InputMarks(InputType inputType)
 		{
-			int interval = 100;
+			int columnCount = Convert.ToInt32(nudColumnCount.Value);
 
 			MessageBox.Show("请在点击“确定”按钮之后10秒内点击成绩输入页面上最左列的最上一个输入框，保证此栏获取输入焦点（光标闪），之后不要移动鼠标，并耐心等待输入开始", "注意", MessageBoxButtons.OK,
 				MessageBoxIcon.Exclamation);
 			Thread.Sleep(10000);
 
-			for (int i = 0; i < gdvMain.RowCount - 1; i++)
+			if (inputType == InputType.RowFirst)
 			{
-				if (columnCount == 1) //只有一列成绩
+				for (int i = 0; i < gdvMain.RowCount - 1; i++)
 				{
-					if (chkExp.Checked) //只输入实验成绩
+					int currentDataColumnIndex = 0;
+
+					for (int j = 0; j < columnCount; j++)
 					{
-						InputData(gdvMain.Rows[i].Cells[0].Value.ToString().Trim()); //输入成绩
-						GoToNextInput(); //→平时成绩
-						GoToNextInput(); //→期末成绩
-						GoToNextInput(); //→换行
-					}
-					else if (chkUsual.Checked) //只输入平时成绩
-					{
-						if (rdoExp.Checked) //若带实验的平时成绩
+						if (((CheckBox)flowLayoutPanelColumns.Controls[j + 1]).Checked)
 						{
-							GoToNextInput(); //→平时成绩
+							InputData(gdvMain.Rows[i].Cells[currentDataColumnIndex].Value.ToString());
+							currentDataColumnIndex++;
 						}
 
-						InputData(gdvMain.Rows[i].Cells[0].Value.ToString().Trim()); //输入成绩
-
-						GoToNextInput(); //→期末成绩
-						GoToNextInput(); //→换行
-					}
-					else if (chkEnd.Checked) //只输入期末成绩
-					SendKeys.SendWait("{TAB}");
-
-					{
-						if (rdoExp.Checked) //若带实验的期末成绩
-						{
-							GoToNextInput(); //→平时成绩
-						}
-
-						GoToNextInput(); //→期末成绩
-
-						InputData(gdvMain.Rows[i].Cells[0].Value.ToString().Trim()); //输入成绩
-
-						GoToNextInput(); //换行
+						GoToNextInput();
 					}
 				}
-				else if (columnCount == 2) //有两列数据
+			}
+			else
+			{
+				int currentDataColumnIndex = 0;
+				for (int i = 0; i < columnCount; i++)
 				{
-					if (chkExp.Checked && chkUsual.Checked) //实验成绩与平时成绩
+					if (((CheckBox)flowLayoutPanelColumns.Controls[i + 1]).Checked)
 					{
-						InputData(gdvMain.Rows[i].Cells[0].Value.ToString().Trim()); //输入实验成绩
-
-						GoToNextInput(); //→平时成绩
-						InputData(gdvMain.Rows[i].Cells[1].Value.ToString().Trim()); //输入平时成绩
-						GoToNextInput(); //→期末成绩
-						GoToNextInput(); //→换行
-					}
-					else if (chkExp.Checked && chkEnd.Checked) //实验成绩与期末成绩
-					{
-						InputData(gdvMain.Rows[i].Cells[0].Value.ToString().Trim()); //输入实验成绩
-						GoToNextInput(); //→平时成绩
-						GoToNextInput(); //→期末成绩
-						InputData(gdvMain.Rows[i].Cells[1].Value.ToString().Trim()); //输入期末成绩
-						GoToNextInput(); //→换行
-					}
-					else if (chkUsual.Checked && chkEnd.Checked) //平时成绩与期末成绩
-					{
-						if (rdoExp.Checked) //若带实验的期末成绩
+						for (int j = 0; j < gdvMain.RowCount - 1; j++)
 						{
-							GoToNextInput(); //→平时成绩
+							InputData(gdvMain.Rows[j].Cells[currentDataColumnIndex].Value.ToString());
+							GoToNextInput();
 						}
-						InputData(gdvMain.Rows[i].Cells[0].Value.ToString().Trim()); //输入平时成绩
-						GoToNextInput(); //→期末成绩
-						InputData(gdvMain.Rows[i].Cells[1].Value.ToString().Trim()); //输入期末成绩
-						GoToNextInput(); //→换行
+						currentDataColumnIndex++;
 					}
-				}
-				else if (columnCount == 3) //实验成绩、平时成绩与期末成绩
-				{
-					InputData(gdvMain.Rows[i].Cells[0].Value.ToString().Trim()); //输入实验成绩
-					GoToNextInput(); //→平时成绩
-					InputData(gdvMain.Rows[i].Cells[1].Value.ToString().Trim()); //输入平时成绩
-					GoToNextInput(); //→期末成绩
-					InputData(gdvMain.Rows[i].Cells[2].Value.ToString().Trim()); //输入期末成绩
-					GoToNextInput(); //→换行
+					else
+					{
+						for (int j = 0; j < gdvMain.RowCount - 1; j++)
+						{
+							GoToNextInput();
+						}
+					}
+
+					//如果已经输入完毕所有列，提早结束输入
+					if (currentDataColumnIndex == selectedColumnCount)
+					{
+						break;
+					}
 				}
 			}
 		}
 
 		public void InputData(string data)
 		{
-			
-
 			_inputSimulator.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_A); //全选当前输入框
 			_inputSimulator.Keyboard.KeyPress(VirtualKeyCode.DELETE);
 			_inputSimulator.Keyboard.TextEntry(data);
-			Thread.Sleep(Convert.ToInt32(nudSpeed.Value));
+			_inputSimulator.Keyboard.Sleep(Convert.ToInt32(nudSpeed.Value));
 		}
 
 		public void GoToNextInput()
 		{
 			_inputSimulator.Keyboard.KeyPress(VirtualKeyCode.TAB);
-			//Thread.Sleep(Convert.ToInt32(nudSpeed.Value));
 			_inputSimulator.Keyboard.Sleep(Convert.ToInt32(nudSpeed.Value));
 		}
 
-		private void rdoNoExp_CheckedChanged(object sender, EventArgs e)
+		private void nudColumnCount_ValueChanged(object sender, EventArgs e)
 		{
-			if (rdoNoExp.Checked)
-			{
-				chkExp.Enabled = false;
-				chkExp.Checked = false;
-			}
-		}
+			int differ = Convert.ToInt32(nudColumnCount.Value) - (flowLayoutPanelColumns.Controls.Count - 1);
 
-		private void rdoExp_CheckedChanged(object sender, EventArgs e)
-		{
-			if (rdoExp.Checked)
+			if (differ > 0)
 			{
-				chkExp.Enabled = true;
+				GenerateColumnCheckBoxes(flowLayoutPanelColumns.Controls.Count, differ);
+			}
+			else
+			{
+				for (int i = 0; i < Math.Abs(differ); i++)
+				{
+					flowLayoutPanelColumns.Controls.RemoveAt(flowLayoutPanelColumns.Controls.Count - 1);
+				}
 			}
 		}
 	}

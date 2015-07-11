@@ -39,22 +39,23 @@
 			this.btnPaste = new System.Windows.Forms.Button();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.label2 = new System.Windows.Forms.Label();
-			this.rdoNoExp = new System.Windows.Forms.RadioButton();
-			this.rdoExp = new System.Windows.Forms.RadioButton();
-			this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
 			this.label3 = new System.Windows.Forms.Label();
-			this.chkExp = new System.Windows.Forms.CheckBox();
-			this.chkUsual = new System.Windows.Forms.CheckBox();
-			this.chkEnd = new System.Windows.Forms.CheckBox();
+			this.nudColumnCount = new System.Windows.Forms.NumericUpDown();
+			this.label5 = new System.Windows.Forms.Label();
+			this.rdoRowFirst = new System.Windows.Forms.RadioButton();
+			this.rdoColumnFirst = new System.Windows.Forms.RadioButton();
 			this.label4 = new System.Windows.Forms.Label();
 			this.nudSpeed = new System.Windows.Forms.NumericUpDown();
+			this.flowLayoutPanelColumns = new System.Windows.Forms.FlowLayoutPanel();
+			this.label6 = new System.Windows.Forms.Label();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gdvMain)).BeginInit();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
-			this.flowLayoutPanel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nudColumnCount)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudSpeed)).BeginInit();
+			this.flowLayoutPanelColumns.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -63,7 +64,7 @@
 			this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label1.Location = new System.Drawing.Point(3, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(835, 180);
+			this.label1.Size = new System.Drawing.Size(905, 180);
 			this.label1.TabIndex = 3;
 			this.label1.Text = resources.GetString("label1.Text");
 			// 
@@ -75,7 +76,7 @@
 			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 3);
 			this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
-			this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 0, 2);
+			this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanelColumns, 0, 2);
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -86,7 +87,7 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(841, 501);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(911, 501);
 			this.tableLayoutPanel1.TabIndex = 0;
 			// 
 			// gdvMain
@@ -97,7 +98,7 @@
 			this.gdvMain.Name = "gdvMain";
 			this.gdvMain.ReadOnly = true;
 			this.gdvMain.RowTemplate.Height = 24;
-			this.gdvMain.Size = new System.Drawing.Size(835, 195);
+			this.gdvMain.Size = new System.Drawing.Size(905, 195);
 			this.gdvMain.TabIndex = 6;
 			// 
 			// tableLayoutPanel2
@@ -114,15 +115,15 @@
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
 			this.tableLayoutPanel2.RowCount = 1;
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(835, 44);
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(905, 44);
 			this.tableLayoutPanel2.TabIndex = 4;
 			// 
 			// btnClear
 			// 
 			this.btnClear.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnClear.Location = new System.Drawing.Point(559, 3);
+			this.btnClear.Location = new System.Drawing.Point(605, 3);
 			this.btnClear.Name = "btnClear";
-			this.btnClear.Size = new System.Drawing.Size(273, 38);
+			this.btnClear.Size = new System.Drawing.Size(297, 38);
 			this.btnClear.TabIndex = 2;
 			this.btnClear.Text = "清空(&C)";
 			this.btnClear.UseVisualStyleBackColor = true;
@@ -131,9 +132,9 @@
 			// btnInput
 			// 
 			this.btnInput.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnInput.Location = new System.Drawing.Point(281, 3);
+			this.btnInput.Location = new System.Drawing.Point(304, 3);
 			this.btnInput.Name = "btnInput";
-			this.btnInput.Size = new System.Drawing.Size(272, 38);
+			this.btnInput.Size = new System.Drawing.Size(295, 38);
 			this.btnInput.TabIndex = 1;
 			this.btnInput.Text = "输入(&I)";
 			this.btnInput.UseVisualStyleBackColor = true;
@@ -144,7 +145,7 @@
 			this.btnPaste.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.btnPaste.Location = new System.Drawing.Point(3, 3);
 			this.btnPaste.Name = "btnPaste";
-			this.btnPaste.Size = new System.Drawing.Size(272, 38);
+			this.btnPaste.Size = new System.Drawing.Size(295, 38);
 			this.btnPaste.TabIndex = 0;
 			this.btnPaste.Text = "粘贴(&P)";
 			this.btnPaste.UseVisualStyleBackColor = true;
@@ -153,124 +154,100 @@
 			// flowLayoutPanel1
 			// 
 			this.flowLayoutPanel1.Controls.Add(this.label2);
-			this.flowLayoutPanel1.Controls.Add(this.rdoNoExp);
-			this.flowLayoutPanel1.Controls.Add(this.rdoExp);
+			this.flowLayoutPanel1.Controls.Add(this.label3);
+			this.flowLayoutPanel1.Controls.Add(this.nudColumnCount);
+			this.flowLayoutPanel1.Controls.Add(this.label5);
+			this.flowLayoutPanel1.Controls.Add(this.rdoRowFirst);
+			this.flowLayoutPanel1.Controls.Add(this.rdoColumnFirst);
+			this.flowLayoutPanel1.Controls.Add(this.label4);
+			this.flowLayoutPanel1.Controls.Add(this.nudSpeed);
 			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 183);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(835, 29);
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(905, 29);
 			this.flowLayoutPanel1.TabIndex = 8;
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label2.Location = new System.Drawing.Point(3, 0);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(116, 27);
-			this.label2.TabIndex = 2;
-			this.label2.Text = "是否包含实验成绩：";
-			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// rdoNoExp
-			// 
-			this.rdoNoExp.AutoSize = true;
-			this.rdoNoExp.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.rdoNoExp.Location = new System.Drawing.Point(125, 3);
-			this.rdoNoExp.Name = "rdoNoExp";
-			this.rdoNoExp.Size = new System.Drawing.Size(98, 21);
-			this.rdoNoExp.TabIndex = 0;
-			this.rdoNoExp.TabStop = true;
-			this.rdoNoExp.Text = "不含实验成绩";
-			this.rdoNoExp.UseVisualStyleBackColor = true;
-			this.rdoNoExp.CheckedChanged += new System.EventHandler(this.rdoNoExp_CheckedChanged);
-			// 
-			// rdoExp
-			// 
-			this.rdoExp.AutoSize = true;
-			this.rdoExp.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.rdoExp.Location = new System.Drawing.Point(229, 3);
-			this.rdoExp.Name = "rdoExp";
-			this.rdoExp.Size = new System.Drawing.Size(86, 21);
-			this.rdoExp.TabIndex = 1;
-			this.rdoExp.TabStop = true;
-			this.rdoExp.Text = "含实验成绩";
-			this.rdoExp.UseVisualStyleBackColor = true;
-			this.rdoExp.CheckedChanged += new System.EventHandler(this.rdoExp_CheckedChanged);
-			// 
-			// flowLayoutPanel2
-			// 
-			this.flowLayoutPanel2.Controls.Add(this.label3);
-			this.flowLayoutPanel2.Controls.Add(this.chkExp);
-			this.flowLayoutPanel2.Controls.Add(this.chkUsual);
-			this.flowLayoutPanel2.Controls.Add(this.chkEnd);
-			this.flowLayoutPanel2.Controls.Add(this.label4);
-			this.flowLayoutPanel2.Controls.Add(this.nudSpeed);
-			this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 218);
-			this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-			this.flowLayoutPanel2.Size = new System.Drawing.Size(835, 29);
-			this.flowLayoutPanel2.TabIndex = 9;
+			this.label2.Size = new System.Drawing.Size(0, 24);
+			this.label2.TabIndex = 0;
 			// 
 			// label3
 			// 
+			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.label3.AutoSize = true;
-			this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label3.Location = new System.Drawing.Point(3, 0);
+			this.label3.Location = new System.Drawing.Point(9, 6);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(164, 27);
-			this.label3.TabIndex = 5;
-			this.label3.Text = "要输入的成绩项（可多选）：";
-			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.label3.Size = new System.Drawing.Size(28, 24);
+			this.label3.TabIndex = 9;
+			this.label3.Text = "共";
 			// 
-			// chkExp
+			// nudColumnCount
 			// 
-			this.chkExp.AutoSize = true;
-			this.chkExp.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.chkExp.Location = new System.Drawing.Point(173, 3);
-			this.chkExp.Name = "chkExp";
-			this.chkExp.Size = new System.Drawing.Size(75, 21);
-			this.chkExp.TabIndex = 1;
-			this.chkExp.Text = "实验成绩";
-			this.chkExp.UseVisualStyleBackColor = true;
+			this.nudColumnCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.nudColumnCount.Location = new System.Drawing.Point(43, 3);
+			this.nudColumnCount.Name = "nudColumnCount";
+			this.nudColumnCount.Size = new System.Drawing.Size(60, 31);
+			this.nudColumnCount.TabIndex = 10;
+			this.nudColumnCount.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+			this.nudColumnCount.ValueChanged += new System.EventHandler(this.nudColumnCount_ValueChanged);
 			// 
-			// chkUsual
+			// label5
 			// 
-			this.chkUsual.AutoSize = true;
-			this.chkUsual.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.chkUsual.Location = new System.Drawing.Point(254, 3);
-			this.chkUsual.Name = "chkUsual";
-			this.chkUsual.Size = new System.Drawing.Size(75, 21);
-			this.chkUsual.TabIndex = 2;
-			this.chkUsual.Text = "平时成绩";
-			this.chkUsual.UseVisualStyleBackColor = true;
+			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(109, 6);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(28, 24);
+			this.label5.TabIndex = 11;
+			this.label5.Text = "列";
 			// 
-			// chkEnd
+			// rdoRowFirst
 			// 
-			this.chkEnd.AutoSize = true;
-			this.chkEnd.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.chkEnd.Location = new System.Drawing.Point(335, 3);
-			this.chkEnd.Name = "chkEnd";
-			this.chkEnd.Size = new System.Drawing.Size(75, 21);
-			this.chkEnd.TabIndex = 3;
-			this.chkEnd.Text = "期末成绩";
-			this.chkEnd.UseVisualStyleBackColor = true;
+			this.rdoRowFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.rdoRowFirst.AutoSize = true;
+			this.rdoRowFirst.Checked = true;
+			this.rdoRowFirst.Location = new System.Drawing.Point(143, 4);
+			this.rdoRowFirst.Name = "rdoRowFirst";
+			this.rdoRowFirst.Size = new System.Drawing.Size(107, 28);
+			this.rdoRowFirst.TabIndex = 12;
+			this.rdoRowFirst.TabStop = true;
+			this.rdoRowFirst.Text = "先行后列";
+			this.rdoRowFirst.UseVisualStyleBackColor = true;
+			// 
+			// rdoColumnFirst
+			// 
+			this.rdoColumnFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.rdoColumnFirst.AutoSize = true;
+			this.rdoColumnFirst.Location = new System.Drawing.Point(256, 4);
+			this.rdoColumnFirst.Name = "rdoColumnFirst";
+			this.rdoColumnFirst.Size = new System.Drawing.Size(107, 28);
+			this.rdoColumnFirst.TabIndex = 13;
+			this.rdoColumnFirst.Text = "先列后行";
+			this.rdoColumnFirst.UseVisualStyleBackColor = true;
 			// 
 			// label4
 			// 
+			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.label4.AutoSize = true;
-			this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label4.Location = new System.Drawing.Point(416, 0);
+			this.label4.Location = new System.Drawing.Point(369, 6);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(188, 27);
-			this.label4.TabIndex = 6;
+			this.label4.Size = new System.Drawing.Size(280, 24);
+			this.label4.TabIndex = 7;
 			this.label4.Text = "输入速度（数值越小，速度越快）";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// nudSpeed
 			// 
-			this.nudSpeed.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.nudSpeed.Location = new System.Drawing.Point(610, 3);
+			this.nudSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.nudSpeed.Location = new System.Drawing.Point(655, 3);
 			this.nudSpeed.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -282,8 +259,8 @@
             0,
             0});
 			this.nudSpeed.Name = "nudSpeed";
-			this.nudSpeed.Size = new System.Drawing.Size(120, 23);
-			this.nudSpeed.TabIndex = 4;
+			this.nudSpeed.Size = new System.Drawing.Size(120, 31);
+			this.nudSpeed.TabIndex = 8;
 			this.toolTip1.SetToolTip(this.nudSpeed, "若因机器较慢导致输入问题，可尝试调大数值。最小值（默认值）20，最大值1000");
 			this.nudSpeed.Value = new decimal(new int[] {
             100,
@@ -291,18 +268,36 @@
             0,
             0});
 			// 
+			// flowLayoutPanelColumns
+			// 
+			this.flowLayoutPanelColumns.Controls.Add(this.label6);
+			this.flowLayoutPanelColumns.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.flowLayoutPanelColumns.Location = new System.Drawing.Point(3, 218);
+			this.flowLayoutPanelColumns.Name = "flowLayoutPanelColumns";
+			this.flowLayoutPanelColumns.Size = new System.Drawing.Size(905, 29);
+			this.flowLayoutPanelColumns.TabIndex = 9;
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(3, 0);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(208, 24);
+			this.label6.TabIndex = 0;
+			this.label6.Text = "选择需要输入数据的列：";
+			// 
 			// frmMain
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(841, 501);
+			this.ClientSize = new System.Drawing.Size(911, 501);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;
 			this.Name = "frmMain";
 			this.Text = "成绩输入器#通用版#（V2.0 by bullfrog2000@sina.com）";
-			this.Load += new System.EventHandler(this.Form1_Load);
+			this.Load += new System.EventHandler(this.frmMain_Load);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
@@ -310,9 +305,10 @@
 			this.tableLayoutPanel2.ResumeLayout(false);
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.flowLayoutPanel1.PerformLayout();
-			this.flowLayoutPanel2.ResumeLayout(false);
-			this.flowLayoutPanel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nudColumnCount)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudSpeed)).EndInit();
+			this.flowLayoutPanelColumns.ResumeLayout(false);
+			this.flowLayoutPanelColumns.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -327,17 +323,17 @@
 		private System.Windows.Forms.Button btnInput;
 		private System.Windows.Forms.Button btnPaste;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-		private System.Windows.Forms.RadioButton rdoNoExp;
-		private System.Windows.Forms.RadioButton rdoExp;
-		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-		private System.Windows.Forms.CheckBox chkExp;
-		private System.Windows.Forms.CheckBox chkUsual;
-		private System.Windows.Forms.CheckBox chkEnd;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.NumericUpDown nudSpeed;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelColumns;
 		private System.Windows.Forms.ToolTip toolTip1;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.NumericUpDown nudColumnCount;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.RadioButton rdoRowFirst;
+		private System.Windows.Forms.RadioButton rdoColumnFirst;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.NumericUpDown nudSpeed;
+		private System.Windows.Forms.Label label6;
 
 	}
 }
