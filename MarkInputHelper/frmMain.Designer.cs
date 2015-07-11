@@ -293,6 +293,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;
 			this.Name = "frmMain";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "成绩输入器#通用版#（V2.0 by bullfrog2000@sina.com）";
 			this.Load += new System.EventHandler(this.frmMain_Load);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
