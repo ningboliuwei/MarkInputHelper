@@ -167,7 +167,7 @@
 			this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label2.Location = new System.Drawing.Point(3, 0);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(116, 27);
+			this.label2.Size = new System.Drawing.Size(172, 34);
 			this.label2.TabIndex = 2;
 			this.label2.Text = "是否包含实验成绩：";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -176,9 +176,9 @@
 			// 
 			this.rdoNoExp.AutoSize = true;
 			this.rdoNoExp.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.rdoNoExp.Location = new System.Drawing.Point(125, 3);
+			this.rdoNoExp.Location = new System.Drawing.Point(181, 3);
 			this.rdoNoExp.Name = "rdoNoExp";
-			this.rdoNoExp.Size = new System.Drawing.Size(98, 21);
+			this.rdoNoExp.Size = new System.Drawing.Size(143, 28);
 			this.rdoNoExp.TabIndex = 0;
 			this.rdoNoExp.TabStop = true;
 			this.rdoNoExp.Text = "不含实验成绩";
@@ -189,9 +189,9 @@
 			// 
 			this.rdoExp.AutoSize = true;
 			this.rdoExp.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.rdoExp.Location = new System.Drawing.Point(229, 3);
+			this.rdoExp.Location = new System.Drawing.Point(330, 3);
 			this.rdoExp.Name = "rdoExp";
-			this.rdoExp.Size = new System.Drawing.Size(86, 21);
+			this.rdoExp.Size = new System.Drawing.Size(125, 28);
 			this.rdoExp.TabIndex = 1;
 			this.rdoExp.TabStop = true;
 			this.rdoExp.Text = "含实验成绩";
@@ -218,7 +218,7 @@
 			this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label3.Location = new System.Drawing.Point(3, 0);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(164, 27);
+			this.label3.Size = new System.Drawing.Size(244, 34);
 			this.label3.TabIndex = 5;
 			this.label3.Text = "要输入的成绩项（可多选）：";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -227,9 +227,9 @@
 			// 
 			this.chkExp.AutoSize = true;
 			this.chkExp.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.chkExp.Location = new System.Drawing.Point(173, 3);
+			this.chkExp.Location = new System.Drawing.Point(253, 3);
 			this.chkExp.Name = "chkExp";
-			this.chkExp.Size = new System.Drawing.Size(75, 21);
+			this.chkExp.Size = new System.Drawing.Size(108, 28);
 			this.chkExp.TabIndex = 1;
 			this.chkExp.Text = "实验成绩";
 			this.chkExp.UseVisualStyleBackColor = true;
@@ -238,9 +238,9 @@
 			// 
 			this.chkUsual.AutoSize = true;
 			this.chkUsual.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.chkUsual.Location = new System.Drawing.Point(254, 3);
+			this.chkUsual.Location = new System.Drawing.Point(367, 3);
 			this.chkUsual.Name = "chkUsual";
-			this.chkUsual.Size = new System.Drawing.Size(75, 21);
+			this.chkUsual.Size = new System.Drawing.Size(108, 28);
 			this.chkUsual.TabIndex = 2;
 			this.chkUsual.Text = "平时成绩";
 			this.chkUsual.UseVisualStyleBackColor = true;
@@ -249,9 +249,9 @@
 			// 
 			this.chkEnd.AutoSize = true;
 			this.chkEnd.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.chkEnd.Location = new System.Drawing.Point(335, 3);
+			this.chkEnd.Location = new System.Drawing.Point(481, 3);
 			this.chkEnd.Name = "chkEnd";
-			this.chkEnd.Size = new System.Drawing.Size(75, 21);
+			this.chkEnd.Size = new System.Drawing.Size(108, 28);
 			this.chkEnd.TabIndex = 3;
 			this.chkEnd.Text = "期末成绩";
 			this.chkEnd.UseVisualStyleBackColor = true;
@@ -260,9 +260,9 @@
 			// 
 			this.label4.AutoSize = true;
 			this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label4.Location = new System.Drawing.Point(416, 0);
+			this.label4.Location = new System.Drawing.Point(3, 34);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(188, 27);
+			this.label4.Size = new System.Drawing.Size(280, 24);
 			this.label4.TabIndex = 6;
 			this.label4.Text = "输入速度（数值越小，速度越快）";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -270,7 +270,7 @@
 			// nudSpeed
 			// 
 			this.nudSpeed.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.nudSpeed.Location = new System.Drawing.Point(610, 3);
+			this.nudSpeed.Location = new System.Drawing.Point(289, 37);
 			this.nudSpeed.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -282,7 +282,7 @@
             0,
             0});
 			this.nudSpeed.Name = "nudSpeed";
-			this.nudSpeed.Size = new System.Drawing.Size(120, 23);
+			this.nudSpeed.Size = new System.Drawing.Size(120, 31);
 			this.nudSpeed.TabIndex = 4;
 			this.toolTip1.SetToolTip(this.nudSpeed, "若因机器较慢导致输入问题，可尝试调大数值。最小值（默认值）20，最大值1000");
 			this.nudSpeed.Value = new decimal(new int[] {
@@ -293,7 +293,7 @@
 			// 
 			// frmMain
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(841, 501);
 			this.Controls.Add(this.tableLayoutPanel1);
