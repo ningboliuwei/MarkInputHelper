@@ -120,18 +120,16 @@
   <data name="label1.Text" xml:space="preserve">
     <value>说明：
 第一步：打开成绩输入页面
-第二步：选择是否包含实验成绩
-第三步：选择要输入的成绩项（可多选）
-第四步：在EXCEL中选中并复制需要输入的数据（只是成绩，不包含表头），并按Ctrl+V或点击“粘贴”按钮，将数据粘贴到表格中
-第五步：点击“输入”按钮，并按提示进行操作
+第二步：设置页面上的总列数
+第三步：选择输入方式（先行后列或先列后行，基于按Tab键光标的切换顺序）
+第四步：选择要输入数据的列
+第五步：在EXCEL中选中并复制需要输入的数据（只是成绩，不包含表头），并按Ctrl+V或点击“粘贴”按钮，将数据粘贴到表格中
+第六步：点击“输入”按钮，并按提示进行操作
 注意：
 1. 若要输入新的成绩，先点击“清空”按钮，再进行粘贴
 2. 重新输入成绩不需要清空页面上的输入框
 3. 支持字母输入，如Q 或 A/B/C/D 等</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

@@ -64,7 +64,7 @@
 			this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label1.Location = new System.Drawing.Point(3, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(905, 180);
+			this.label1.Size = new System.Drawing.Size(872, 288);
 			this.label1.TabIndex = 3;
 			this.label1.Text = resources.GetString("label1.Text");
 			// 
@@ -81,24 +81,23 @@
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 4;
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(911, 501);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(878, 744);
 			this.tableLayoutPanel1.TabIndex = 0;
 			// 
 			// gdvMain
 			// 
 			this.gdvMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.gdvMain.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gdvMain.Location = new System.Drawing.Point(3, 253);
+			this.gdvMain.Location = new System.Drawing.Point(3, 361);
 			this.gdvMain.Name = "gdvMain";
 			this.gdvMain.ReadOnly = true;
 			this.gdvMain.RowTemplate.Height = 24;
-			this.gdvMain.Size = new System.Drawing.Size(905, 195);
+			this.gdvMain.Size = new System.Drawing.Size(872, 330);
 			this.gdvMain.TabIndex = 6;
 			// 
 			// tableLayoutPanel2
@@ -111,19 +110,19 @@
 			this.tableLayoutPanel2.Controls.Add(this.btnInput, 1, 0);
 			this.tableLayoutPanel2.Controls.Add(this.btnPaste, 0, 0);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 454);
+			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 697);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
 			this.tableLayoutPanel2.RowCount = 1;
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(905, 44);
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(872, 44);
 			this.tableLayoutPanel2.TabIndex = 4;
 			// 
 			// btnClear
 			// 
 			this.btnClear.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnClear.Location = new System.Drawing.Point(605, 3);
+			this.btnClear.Location = new System.Drawing.Point(583, 3);
 			this.btnClear.Name = "btnClear";
-			this.btnClear.Size = new System.Drawing.Size(297, 38);
+			this.btnClear.Size = new System.Drawing.Size(286, 38);
 			this.btnClear.TabIndex = 2;
 			this.btnClear.Text = "清空(&C)";
 			this.btnClear.UseVisualStyleBackColor = true;
@@ -132,9 +131,9 @@
 			// btnInput
 			// 
 			this.btnInput.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnInput.Location = new System.Drawing.Point(304, 3);
+			this.btnInput.Location = new System.Drawing.Point(293, 3);
 			this.btnInput.Name = "btnInput";
-			this.btnInput.Size = new System.Drawing.Size(295, 38);
+			this.btnInput.Size = new System.Drawing.Size(284, 38);
 			this.btnInput.TabIndex = 1;
 			this.btnInput.Text = "输入(&I)";
 			this.btnInput.UseVisualStyleBackColor = true;
@@ -145,7 +144,7 @@
 			this.btnPaste.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.btnPaste.Location = new System.Drawing.Point(3, 3);
 			this.btnPaste.Name = "btnPaste";
-			this.btnPaste.Size = new System.Drawing.Size(295, 38);
+			this.btnPaste.Size = new System.Drawing.Size(284, 38);
 			this.btnPaste.TabIndex = 0;
 			this.btnPaste.Text = "粘贴(&P)";
 			this.btnPaste.UseVisualStyleBackColor = true;
@@ -162,9 +161,9 @@
 			this.flowLayoutPanel1.Controls.Add(this.label4);
 			this.flowLayoutPanel1.Controls.Add(this.nudSpeed);
 			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 183);
+			this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 291);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(905, 29);
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(872, 29);
 			this.flowLayoutPanel1.TabIndex = 8;
 			// 
 			// label2
@@ -270,9 +269,9 @@
 			// 
 			this.flowLayoutPanelColumns.Controls.Add(this.label6);
 			this.flowLayoutPanelColumns.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.flowLayoutPanelColumns.Location = new System.Drawing.Point(3, 218);
+			this.flowLayoutPanelColumns.Location = new System.Drawing.Point(3, 326);
 			this.flowLayoutPanelColumns.Name = "flowLayoutPanelColumns";
-			this.flowLayoutPanelColumns.Size = new System.Drawing.Size(905, 29);
+			this.flowLayoutPanelColumns.Size = new System.Drawing.Size(872, 29);
 			this.flowLayoutPanelColumns.TabIndex = 9;
 			// 
 			// label6
@@ -288,7 +287,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(911, 501);
+			this.ClientSize = new System.Drawing.Size(878, 744);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
