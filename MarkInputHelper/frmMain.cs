@@ -142,6 +142,12 @@ namespace MarkInputHelper
 				return;
 			}
 
+			if (!rdoRowFirst.Checked && !rdoColumnFirst.Checked )
+			{
+				MessageBox.Show("请选择输入方式（先行后列或先列后行）。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
 			if (MessageBox.Show("确定输入成绩吗？", "问题", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
 			{
 				if (rdoRowFirst.Checked)
@@ -174,6 +180,8 @@ namespace MarkInputHelper
 						if (((CheckBox)flowLayoutPanelColumns.Controls[j + 1]).Checked)
 						{
 							InputData(gdvMain.Rows[i].Cells[currentDataColumnIndex].Value.ToString());
+							//Clipboard.SetText(gdvMain.Rows[i].Cells[currentDataColumnIndex].Value.ToString().Trim());
+							//PasteData();
 							currentDataColumnIndex++;
 						}
 
@@ -191,6 +199,8 @@ namespace MarkInputHelper
 						for (int j = 0; j < gdvMain.RowCount - 1; j++)
 						{
 							InputData(gdvMain.Rows[j].Cells[currentDataColumnIndex].Value.ToString());
+							//Clipboard.SetText(gdvMain.Rows[j].Cells[currentDataColumnIndex].Value.ToString().Trim());
+							//PasteData();
 							GoToNextInput();
 						}
 						currentDataColumnIndex++;
@@ -217,6 +227,14 @@ namespace MarkInputHelper
 			_inputSimulator.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_A); //全选当前输入框
 			_inputSimulator.Keyboard.KeyPress(VirtualKeyCode.DELETE);
 			_inputSimulator.Keyboard.TextEntry(data);
+			_inputSimulator.Keyboard.Sleep(Convert.ToInt32(nudSpeed.Value));
+		}
+
+		public void PasteData()
+		{
+			_inputSimulator.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_A); //全选当前输入框
+			_inputSimulator.Keyboard.KeyPress(VirtualKeyCode.DELETE);
+			_inputSimulator.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
 			_inputSimulator.Keyboard.Sleep(Convert.ToInt32(nudSpeed.Value));
 		}
 

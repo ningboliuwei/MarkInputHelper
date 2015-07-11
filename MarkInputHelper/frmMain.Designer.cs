@@ -213,12 +213,10 @@
 			// 
 			this.rdoRowFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.rdoRowFirst.AutoSize = true;
-			this.rdoRowFirst.Checked = true;
 			this.rdoRowFirst.Location = new System.Drawing.Point(143, 4);
 			this.rdoRowFirst.Name = "rdoRowFirst";
 			this.rdoRowFirst.Size = new System.Drawing.Size(107, 28);
 			this.rdoRowFirst.TabIndex = 12;
-			this.rdoRowFirst.TabStop = true;
 			this.rdoRowFirst.Text = "先行后列";
 			this.rdoRowFirst.UseVisualStyleBackColor = true;
 			// 
